@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header text-white bg-primary cursorPointer" (click)="isHidden = !isHidden">
+        {{constituency.name}}
+    </div>
+    <div class="card-body" [hidden]="isHidden">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Votes</th>
+                    <th scope="col">Percentage</th>
+                    <th scope="col">Error</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let result of constituency.results'>
+                    <td [ngSwitch]="result.candidate.code">
+                        <span *ngSwitchCase="'DT'">Donald Trump</span>
+                        <span *ngSwitchCase="'HC'">Hillary Clinton</span>
+                        <span *ngSwitchCase="'JB'">Joe Biden</span>
+                        <span *ngSwitchCase="'JFK'">John F. Kennedy</span>
+                        <span *ngSwitchCase="'JR'">Jack Randall</span>
+                        <span *ngSwitchDefault> N/A </span>
+                    </td>
+                    <td>{{result.votes}}</td>
+                    <td>{{(result.votes/total)*100 | number:'1.0-0'}}%</td>
+                    <td>-</td>
+                </tr>
+                <tr *ngFor='let error of candidateError'>
+                    <td [ngSwitch]="error.code">
+                        <span *ngSwitchCase="'DT'">Donald Trump</span>
+                        <span *ngSwitchCase="'HC'">Hillary Clinton</span>
+                        <span *ngSwitchCase="'JB'">Joe Biden</span>
+                        <span *ngSwitchCase="'JFK'">John F. Kennedy</span>
+                        <span *ngSwitchCase="'JR'">Jack Randall</span>
+                        <span *ngSwitchDefault> N/A </span>
+                    </td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>Yes</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

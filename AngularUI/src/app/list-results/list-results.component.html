@@ -1,0 +1,7 @@
+<div *ngIf="!constituencies || constituencies.length === 0">
+  <h2>No results</h2>
+</div>
+
+<div *ngFor="let constituency of constituencies" class="pt-5">
+    <app-display-results [constituency]="constituency"></app-display-results>
+  </div>
